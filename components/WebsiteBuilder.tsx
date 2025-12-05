@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { generateWebsiteCode } from '../services/geminiService';
 import { BusinessState } from '../types';
 import { SandpackProvider, SandpackLayout, SandpackPreview } from "@codesandbox/sandpack-react";
-import { Loader2, Globe, Code, Server, Box, Database, Zap, Cpu, ArrowRight } from 'lucide-react';
+import { Loader2, Zap, Server } from 'lucide-react';
 
 interface WebsiteBuilderProps {
   business: BusinessState;
@@ -58,7 +58,7 @@ export default function Home({ launchDate, spotsRemaining }) {
         <div className="container mx-auto px-6 relative z-10 text-center">
            <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full text-sm font-medium mb-8">
               <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-              SSR Enabled: Launching {launchDate}
+              Launching {launchDate}
            </div>
            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
              Turn Ideas Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Reality</span>
@@ -93,12 +93,12 @@ export default function Home({ launchDate, spotsRemaining }) {
       {/* Server-Side Waitlist */}
       <section className="py-20 bg-white">
          <div className="container mx-auto px-6 max-w-xl text-center">
-            <h2 className="text-3xl font-bold mb-4">Join the Backend Beta</h2>
-            <p className="text-slate-600 mb-8">Only {spotsRemaining} spots reserved via Server-Side Props.</p>
+            <h2 className="text-3xl font-bold mb-4">Join the Waitlist</h2>
+            <p className="text-slate-600 mb-8">Only {spotsRemaining} spots reserved.</p>
             
             {joined ? (
               <div className="p-4 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100 font-medium">
-                 Data sent to Node.js backend successfully!
+                 Data sent to backend successfully!
               </div>
             ) : (
               <form onSubmit={joinList} className="flex gap-2">
@@ -119,7 +119,7 @@ export default function Home({ launchDate, spotsRemaining }) {
       </section>
       
       <footer className="py-8 text-center text-slate-400 text-sm border-t border-slate-100">
-         <p>Powered by Next.js & Node.js Runtime</p>
+         <p>© 2024 {businessName || 'Your Company'}. All rights reserved.</p>
       </footer>
     </div>
   );
@@ -166,9 +166,9 @@ export async function getServerSideProps() {
       <div className="flex justify-between items-center shrink-0">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-            Full Stack Application <span className="text-xs bg-black text-white px-2 py-1 rounded font-mono">NEXT.JS</span>
+            Website Builder
           </h2>
-          <p className="text-slate-500">Node.js Environment with Server-Side Rendering (SSR) & API Routes.</p>
+          <p className="text-slate-500">Preview your Next.js application.</p>
         </div>
         <div className="flex gap-2">
           <button
@@ -177,7 +177,7 @@ export async function getServerSideProps() {
             className="flex items-center gap-2 px-6 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors shadow-sm disabled:opacity-50"
           >
             {loading ? <Loader2 className="animate-spin" size={18} /> : <Zap size={18} />}
-            {business.websiteCode ? 'Re-Deploy Full Stack' : 'Deploy Next.js App'}
+            {business.websiteCode ? 'Regenerate Website' : 'Generate Website'}
           </button>
         </div>
       </div>
@@ -191,7 +191,7 @@ export async function getServerSideProps() {
                  <Server size={20} className="text-indigo-600" />
                </div>
              </div>
-             <p className="font-medium animate-pulse">Running Build Process (Next.js)...</p>
+             <p className="font-medium animate-pulse">Building Full Stack App...</p>
            </div>
         ) : null}
         
@@ -264,21 +264,10 @@ body {
                 showNavigator={true}
                 showOpenInCodeSandbox={true}
                 showRefreshButton={true}
-                actionsChildren={
-                  <div className="flex items-center gap-3 px-2 text-xs text-slate-500 font-medium">
-                     <span className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-700 rounded"><Server size={12}/> Node.js Active</span>
-                     <span className="flex items-center gap-1.5 px-2 py-1 bg-indigo-50 text-indigo-700 rounded"><Cpu size={12}/> SSR Enabled</span>
-                  </div>
-                }
               />
             </SandpackLayout>
           </SandpackProvider>
         </div>
-      </div>
-      
-      <div className="flex gap-2 text-xs text-slate-400 shrink-0 justify-between">
-        <span className="flex items-center gap-1"><Box size={10} /> Powered by Next.js & Node.js Runtime</span>
-        <span className="flex items-center gap-1"><Database size={10}/> Full Stack Environment</span>
       </div>
     </div>
   );

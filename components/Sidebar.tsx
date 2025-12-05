@@ -8,9 +8,6 @@ import {
   TrendingUp, 
   LineChart,
   Presentation,
-  Gem,
-  Server,
-  Zap
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -40,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, setModule, hasIdea }) 
           </div>
           Business OS
         </h1>
-        <p className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Next.js Edition</p>
+        <p className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Diamond Edition</p>
       </div>
       
       <nav className="flex-1 px-4 space-y-2">
@@ -72,33 +69,14 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, setModule, hasIdea }) 
         })}
       </nav>
 
-      <div className="p-6 border-t border-slate-800 space-y-4">
-        <div className="flex items-center justify-between text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
-           <span>Environment</span>
-           <div className="flex items-center gap-1 text-emerald-500">
-             <Zap size={10} className="fill-current" />
-             Next.js
-           </div>
-        </div>
-        
-        <div className="bg-slate-950 rounded p-3 border border-slate-800 flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <Server size={14} className="text-indigo-400" />
-            <span className="text-xs text-slate-300 font-mono">Node.js Server</span>
-          </div>
-          <div className="pl-6 text-[10px] text-slate-500 font-mono">
-            Status: Running<br/>
-            Port: 3000
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 pt-2">
+      <div className="p-6 border-t border-slate-800">
+        <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs">
             DC
           </div>
           <div>
             <p className="text-sm font-medium text-white">Diamond Challenge</p>
-            <p className="text-xs text-slate-500">Full Stack Project</p>
+            <p className="text-xs text-slate-500">Founder Access</p>
           </div>
         </div>
       </div>
