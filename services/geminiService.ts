@@ -86,25 +86,25 @@ export const generateLogo = async (businessName: string, idea: string) => {
 
 export const generateWebsiteCode = async (businessName: string, idea: string, colors: string[]) => {
   const colorString = colors.join(', ');
-  const prompt = `Create a single-file React Landing Page for "${businessName}" (${idea}).
+  const prompt = `Create a specific, high-quality Landing Page for "${businessName}" (${idea}) using Next.js Pages Router.
   
-  RULES:
-  1. Use Tailwind CSS for styling.
-  2. Use these colors if possible: ${colorString}.
-  3. The code MUST be a default export function named 'App'.
-  4. RETURN RAW JAVASCRIPT/JSX ONLY. NO MARKDOWN. NO \`\`\` code blocks.
-  5. Import 'lucide-react' for icons.
-  6. Import 'React' from 'react'.
-  7. Do NOT use ReactDOM.render or createRoot. The file will be imported by an index file.
-  8. Include sections: Hero, Features, Testimonials, Footer.
+  DESIGN RULES:
+  1. Create a beautiful Hero Section with a clear value proposition and Call to Action (CTA).
+  2. Include a Features Section describing the benefits.
+  3. Use Tailwind CSS for modern styling. Use the colors: ${colorString}.
+  4. The design must look professional, like a real startup website, NOT a debug page.
   
-  EXAMPLE START:
-  import React, { useState } from 'react';
-  import { Menu, X } from 'lucide-react';
-  export default function App() {
-  ...
+  TECHNICAL RULES (STRICT NEXT.JS/NODE):
+  1. Use 'getServerSideProps' to fetch data (simulate fetching 'pricing' or 'launchDate') to prove SSR.
+  2. Pass this data to the Page component.
+  3. Include a 'Join Waitlist' form that calls 'fetch("/api/contact", { method: "POST" })'.
   
-  Generate the full code now.`;
+  OUTPUT FORMAT:
+  - Return ONLY raw Javascript/JSX code for the 'pages/index.js' file.
+  - No markdown blocks.
+  - Imports: React, Head (next/head), Lucide icons.
+  
+  Generate the code now.`;
 
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
@@ -115,7 +115,6 @@ export const generateWebsiteCode = async (businessName: string, idea: string, co
   });
 
   let code = response.text || '';
-  // Aggressive cleanup to ensure no markdown text breaks the preview
   code = code.replace(/```javascript/g, '')
              .replace(/```jsx/g, '')
              .replace(/```tsx/g, '')
